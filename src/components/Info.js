@@ -20,7 +20,7 @@ export default function Info() {
           <h3 className="text-sm font-bold text-red-500">Software Developer</h3>
           <a
             href="mailto:jasperisaac27@gmail.com"
-            className="text-xs text-red-400"
+            className="text-xs text-red-400 "
           >
             jasperisaac27@gmail.com
           </a>

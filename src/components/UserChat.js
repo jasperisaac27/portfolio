@@ -28,21 +28,23 @@ export default function UserChat(props) {
 
   if (isTriggered) {
     return (
-      <div
-        className={`mr-12 xl:mr-24  inline-flex gap-2 p-2 bg-white rounded-lg  w-fit  ${
-          typing && "animate-pulse"
-        }`}
-      >
-        <div className="size-6 inline-flex items-center justify-center   text-[0.5rem] text-white bg-blue-500 rounded-full">
+      <div className="flex items-center gap-2">
+        <div className="inline-flex items-center justify-center flex-shrink-0 text-xs text-white bg-blue-500 rounded-full size-8">
           YOU
         </div>
-        {typing ? (
-          <div className="flex justify-center min-w-12">
-            <EllipsisIcon className="size-6 inline-fle" />
-          </div>
-        ) : (
-          props.text
-        )}
+        <div
+          className={`mr-12 xl:mr-24  inline-flex gap-2 p-2 bg-white rounded-lg  w-fit  ${
+            typing && "animate-pulse"
+          }`}
+        >
+          {typing ? (
+            <div className="flex justify-center min-w-12">
+              <EllipsisIcon className="size-6 inline-fle" />
+            </div>
+          ) : (
+            props.text
+          )}
+        </div>{" "}
       </div>
     );
   }

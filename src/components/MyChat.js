@@ -32,12 +32,8 @@ export default function MyChat(props) {
 
   if (isTriggered) {
     return (
-      <div
-        className={`ml-12 xl:ml-24 inline-flex gap-2 p-2 bg-white rounded-lg self-end  w-fit ${
-          typing && "animate-pulse"
-        }`}
-      >
-        <div className="flex-shrink-0 size-6 inline-flex items-center justify-center   text-[0.5rem] text-white bg-blue-500 rounded-full">
+      <div className="flex self-end gap-2 ml-12 xl:ml-24">
+        <div className="flex-shrink-0 size-8 mt-1 inline-flex items-center justify-center   text-[0.5rem] text-white bg-blue-500 rounded-full">
           <Image
             src={informal_pic}
             width={300}
@@ -46,13 +42,19 @@ export default function MyChat(props) {
             className="rounded-full"
           />
         </div>
-        {typing ? (
-          <div className="flex justify-center min-w-12">
-            <EllipsisIcon className="size-6 inline-fle" />
-          </div>
-        ) : (
-          props.text
-        )}
+        <div
+          className={`inline-flex gap-2 p-2 bg-white rounded-lg self-end  w-fit ${
+            typing && "animate-pulse"
+          }`}
+        >
+          {typing ? (
+            <div className="flex justify-center min-w-12">
+              <EllipsisIcon className="size-6 inline-fle" />
+            </div>
+          ) : (
+            props.text
+          )}
+        </div>{" "}
       </div>
     );
   }
