@@ -6,7 +6,7 @@ import AppContext from "@/app/context/Context";
 import MyProjects from "./MyProjects";
 import Image from "next/image";
 import informal_pic from "@/public/informal_pic.jpg";
-import { XIcon } from "lucide-react";
+import { XIcon, ArrowBigLeftIcon, SquareIcon } from "lucide-react";
 export default function Chat() {
   const context = useContext(AppContext);
 
@@ -39,6 +39,17 @@ export default function Chat() {
     });
   }
 
+  function revertStep() {
+    if (!orderedConversation.length) return;
+    context.setSelectedSteps((prev) => [...prev.slice(0, prev.length - 1)]);
+    setOrderedConversation((prev) => [...prev.slice(0, prev.length - 2)]);
+  }
+
+  function revertAll() {
+    context.setSelectedSteps([]);
+    setOrderedConversation([]);
+  }
+
   return (
     <div
       className={`  flex flex-col  w-full max-w-4xl mx-8 my-8 overflow-y-auto border rounded-lg shadow-2xl xl:ml-0 sm:mx-12 bg-black/25 relative`}
@@ -67,7 +78,7 @@ export default function Chat() {
         </div>
       )}
       <div
-        className={`flex flex-col  gap-8 p-8 ${
+        className={`flex flex-col   flex-grow gap-8 p-8  ${
           !orderedConversation.length && "hidden"
         }`}
       >
@@ -89,7 +100,6 @@ export default function Chat() {
           return <MyChat key={chat.text} text={chat.text} step={chat.step} />;
         })}
       </div>
-
       <div className={`${!context.selectedSteps.length && "my-auto"}`}>
         {!context.selectedSteps.length && (
           <p className="text-center text-white">
@@ -132,6 +142,14 @@ export default function Chat() {
             </button>
           )}
         </div>
+      </div>
+      <div className="sticky bottom-0 flex self-end justify-center w-full gap-4 py-4 text-black bg-white border-t">
+        <button className="transition-all hover:scale-110" onClick={revertStep}>
+          <ArrowBigLeftIcon />
+        </button>
+        <button className="transition-all hover:scale-110" onClick={revertAll}>
+          <SquareIcon />
+        </button>
       </div>
     </div>
   );
